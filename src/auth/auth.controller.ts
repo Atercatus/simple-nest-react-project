@@ -1,28 +1,30 @@
-import { Controller, Post, Body, Get, Patch, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Post, Body, Get, Patch, Res, Req } from '@nestjs/common';
+import { Response, Request } from 'express';
 import { AuthService } from './auth.service';
-import { User } from '../typeorm/entity/user.entity';
 import { UserDto } from '../user/dto/user.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
+  @Get('logout')
+  logout(@Res() response: Response): Response {
+    this.authService.logout();
+
+    response.cookie('id', '', { expires: new Date(Date.now()) });
+    return response.send();
+  }
+
+  @Post('login')
   async login(
     @Body() userDto: UserDto,
-    @Res() res: Response,
+    @Res() response: Response,
   ): Promise<Response> {
     const id = await this.authService.login(userDto);
 
-    if (id) res.cookie('id', id);
-    return res.send();
+    if (id) response.cookie('id', id);
+    return response.send();
   }
-
-  // @Post()
-  // async createUser(@Body() userDto: UserDto): Promise<User> {
-  //   return this.authService.createUser(userDto);
-  // }
 
   @Patch()
   async updateUser(@Body() userDto: UserDto) {

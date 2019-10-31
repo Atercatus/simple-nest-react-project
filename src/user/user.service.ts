@@ -17,9 +17,7 @@ export class UserService {
   async createUser(userDto: UserDto) {
     try {
       const user = this.userRepository.create(userDto);
-      console.log(user);
       const result = await this.userRepository.insert(user);
-      console.log(user);
       return user;
     } catch (err) {
       throw new BadRequestException();

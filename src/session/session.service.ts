@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ElementDto } from './dto/element.dto';
+import { throwStatement } from '@babel/types';
 
 @Injectable()
 export class SessionService {
@@ -11,12 +12,16 @@ export class SessionService {
 
   set(element: ElementDto): void {
     this.session.set(element.key, element.value);
-    console.log(this.session);
   }
 
-  get(element: ElementDto) {
-    const result = this.session.get(element.key);
-    console.log(result);
+  get(key: string) {
+    const result = this.session.get(key);
     return result;
+  }
+
+  delete(key: string) {
+    console.log(this.session);
+    this.session.delete(key);
+    console.log(this.session);
   }
 }
