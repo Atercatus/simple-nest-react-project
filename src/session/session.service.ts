@@ -12,10 +12,12 @@ export class SessionService {
 
   set(element: ElementDto): void {
     this.session.set(element.key, element.value);
+    console.log(this.session);
   }
 
   get(key: string) {
     const result = this.session.get(key);
+    console.log(result);
     return result;
   }
 

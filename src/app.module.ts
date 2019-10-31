@@ -12,6 +12,6 @@ import { DeserializerMiddleware } from './core/middlewares/deserializer/deserial
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(DeserializerMiddleware).forRoutes('auth');
+    consumer.apply(DeserializerMiddleware).forRoutes('*');
   }
 }

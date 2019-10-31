@@ -6,7 +6,6 @@ import { Request } from 'express';
 export class TestService {
   constructor(@Inject(REQUEST) private request: Request) {}
   test() {
-    console.log('this.request.user:', this.request.user);
-    console.log('this is custom provider');
+    console.log('pass the guard!');
   }
 }

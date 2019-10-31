@@ -3,8 +3,8 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 import { SessionModule } from '../session/session.module';
-import { TestModule } from '../Request/test.module';
-import { TestService } from '../Request/test.service';
+import { TestModule } from '../Test/test.module';
+import { TestService } from '../Test/test.service';
 
 const mockTestService = {
   provide: 'TEST_SERVICE',
