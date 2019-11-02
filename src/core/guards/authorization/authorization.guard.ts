@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext, Req } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 
@@ -10,8 +10,8 @@ export class AuthorizationGuard implements CanActivate {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
     const request: Request = context.switchToHttp().getRequest();
     console.log(request.user);
+    console.log(roles);
 
     return request.user['name'] === roles[0];
-    // return true;
   }
 }

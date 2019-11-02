@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware, Scope, Inject } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SessionService } from '../../../session/session.service';
 

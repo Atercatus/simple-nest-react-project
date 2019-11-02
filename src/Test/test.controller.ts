@@ -1,7 +1,17 @@
-import { Controller, UseGuards, Get } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Get,
+  Post,
+  UsePipes,
+  Body,
+} from '@nestjs/common';
 import { AuthorizationGuard } from '../core/guards/authorization/authorization.guard';
 import { Roles } from '../core/guards/authorization/roles.decorator';
 import { TestService } from './test.service';
+import { ValidationPipe } from '../core/pipes/validation.pipe';
+import { testSchema } from './dto/test.schema';
+import { TestDto } from './dto/test.dto';
 
 @Controller('test')
 @UseGuards(AuthorizationGuard)
@@ -12,5 +22,12 @@ export class TestController {
   @Roles('admin')
   get() {
     this.testService.test();
+  }
+
+  @Post()
+  @Roles('admin')
+  @UsePipes(new ValidationPipe(testSchema))
+  post(@Body() testDto: TestDto) {
+    console.log(testDto);
   }
 }
