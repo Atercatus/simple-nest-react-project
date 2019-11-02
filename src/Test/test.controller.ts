@@ -12,6 +12,7 @@ import { TestService } from './test.service';
 import { ValidationPipe } from '../core/pipes/validation.pipe';
 import { testSchema } from './dto/test.schema';
 import { TestDto } from './dto/test.dto';
+import { CustomException } from '../core/exceptions/custom.exception';
 
 @Controller('test')
 @UseGuards(AuthorizationGuard)
@@ -37,6 +38,7 @@ export class TestController {
   // @UsePipes(ValidationPipe) // you can do this
   post(@Body(ValidationPipe) testDto: TestDto) {
     console.log(testDto);
+    throw new CustomException();
     return testDto;
   }
 }
