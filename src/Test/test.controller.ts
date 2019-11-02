@@ -5,6 +5,7 @@ import {
   Post,
   UsePipes,
   Body,
+  UseFilters,
 } from '@nestjs/common';
 import { AuthorizationGuard } from '../core/guards/authorization/authorization.guard';
 import { Roles } from '../core/guards/authorization/roles.decorator';
@@ -13,6 +14,7 @@ import { ValidationPipe } from '../core/pipes/validation.pipe';
 import { testSchema } from './dto/test.schema';
 import { TestDto } from './dto/test.dto';
 import { CustomException } from '../core/exceptions/custom.exception';
+import { CustomFilter } from '../core/filters/custom.filter';
 
 @Controller('test')
 @UseGuards(AuthorizationGuard)
@@ -36,6 +38,7 @@ export class TestController {
   @Post()
   @Roles('admin')
   // @UsePipes(ValidationPipe) // you can do this
+  @UseFilters(CustomFilter)
   post(@Body(ValidationPipe) testDto: TestDto) {
     console.log(testDto);
     throw new CustomException();
