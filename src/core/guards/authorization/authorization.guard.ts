@@ -9,9 +9,7 @@ export class AuthorizationGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
     const request: Request = context.switchToHttp().getRequest();
-    console.log(request.user);
-    console.log(roles);
 
-    return request.user['name'] === roles[0];
+    return request.user && request.user['name'] === roles[0];
   }
 }

@@ -24,10 +24,19 @@ export class TestController {
     this.testService.test();
   }
 
+  // using hapi/joi
+  // @Post()
+  // @Roles('admin')
+  // @UsePipes(new ValidationPipe(testSchema))
+  // post(@Body() testDto: TestDto) {
+  //   console.log(testDto);
+  // }
+
   @Post()
   @Roles('admin')
-  @UsePipes(new ValidationPipe(testSchema))
-  post(@Body() testDto: TestDto) {
+  // @UsePipes(ValidationPipe) // you can do this
+  post(@Body(ValidationPipe) testDto: TestDto) {
     console.log(testDto);
+    return testDto;
   }
 }
