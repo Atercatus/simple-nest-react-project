@@ -5,9 +5,17 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    nullable: false,
+    unique: true,
+  })
   name: string;
 
-  @Column('int')
+  @Column({
+    type: 'int',
+    nullable: false,
+    unique: false,
+  })
   age: number;
 }
