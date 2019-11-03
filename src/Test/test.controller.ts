@@ -27,7 +27,8 @@ export class TestController {
   @Get()
   @Roles('admin')
   get() {
-    this.testService.test();
+    this.testService.create();
+    // this.testService.test();
   }
 
   // using hapi/joi

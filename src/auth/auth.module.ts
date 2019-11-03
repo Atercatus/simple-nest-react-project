@@ -15,7 +15,7 @@ const mockTestService = {
 @Module({
   imports: [UserModule, SessionModule, TestModule],
   controllers: [AuthController],
-  providers: [AuthService, mockTestService],
+  providers: [AuthService, TestService],
   exports: [SessionModule],
 })
 export class AuthModule {}
